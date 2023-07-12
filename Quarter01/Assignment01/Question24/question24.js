@@ -1,3 +1,5 @@
+//To allow includes method to work properly use following reference:
+//https://stackoverflow.com/questions/40545329/property-includes-does-not-exist-on-type-string
 var myName = 'Muhammad Bilal Akhtar';
 console.log("Is my name != 'Muhammad Bilal'? I predict False.");
 console.log(myName != 'Muhammad Bilal');

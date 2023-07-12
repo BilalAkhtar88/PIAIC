@@ -1,3 +1,7 @@
+//To allow includes method to work properly use following references:
+//1. https://stackoverflow.com/questions/40545329/property-includes-does-not-exist-on-type-string
+//2. https://github.com/s-panferov/awesome-typescript-loader/issues/329
+
 let myName = 'Muhammad Bilal Akhtar';
 console.log("Is my name != 'Muhammad Bilal'? I predict False.");
 console.log(myName != 'Muhammad Bilal');
@@ -50,4 +54,4 @@ console.log("Is Bengali included in list of languages? I predict False.");
 console.log(list_languages.includes('Bengali'));
 
 console.log("Is Urdu included in list of languages? I predict True.");
-console.log(list_languages. includes('Urdu'));
+console.log(list_languages.includes('Urdu'));
