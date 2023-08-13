@@ -9,72 +9,50 @@
 // It works when i transpile using command tsc only and not with tsc index.ts thn index.js
 import chalk from 'chalk';
 import inquirer from 'inquirer';
+import * as operations from "./operations.js";
 let result;
-async function calc() {
-    const answers = await inquirer.prompt([
-        {
-            type: 'input',
-            name: 'num1',
-            message: 'Enter the first integer: ',
-            default: 0
-        },
-        {
-            type: 'input',
-            name: 'num2',
-            message: 'Enter the second integer: ',
-            default: 1
-        },
-        {
-            type: 'list',
-            name: 'operator',
-            message: 'Select the operation.',
-            choices: ['Add', 'Subtract', 'Multiply', 'Divide', 'Remainder', 'Power'],
-        }
-    ]);
-    if (answers.operator == 'Add') {
-        result = Number(answers.num1) + Number(answers.num2);
+const answers = await inquirer.prompt([
+    {
+        name: "num1",
+        type: "number",
+        message: "Enter the first operand: "
+    },
+    {
+        name: "num2",
+        type: "number",
+        message: "Enter the second operand: "
+    },
+    {
+        name: "operation",
+        type: "checkbox",
+        message: "Select the operator: ",
+        choices: ["Addition", "Subtraction", "Multiplication", "Division", "Remainder", "Exponentiation"]
     }
-    else if (answers.operator == 'Subtract') {
-        result = Number(answers.num1) - Number(answers.num2);
+]);
+async function calculatorMain() {
+    if (answers.operation == "Addition") {
+        result = operations.default(answers.num1, answers.num2);
+        console.log("You selected " + chalk.green.bold("addition") + " operation. Adding " + chalk.blue.bold(answers.num1) + " to " + chalk.blue.bold(answers.num2) + " gives " + chalk.green.bold(result) + " .");
     }
-    else if (answers.operator == 'Multiply') {
-        result = Number(answers.num1) * Number(answers.num2);
+    else if (answers.operation == "Subtraction") {
+        result = operations.subtract(answers.num1, answers.num2);
+        console.log("You selected " + chalk.green.bold("subtraction") + " operation. Subtracting " + chalk.blue(answers.num2) + " from " + chalk.blue(answers.num1) + " gives " + chalk.green.bold(result) + " .");
     }
-    else if (answers.operator == 'Divide') {
-        result = Number(answers.num1) / Number(answers.num2);
+    else if (answers.operation == "Multiplication") {
+        result = operations.multiply(answers.num1, answers.num2);
+        console.log("You selected " + chalk.green.bold("multiplication") + " operation. Multiplying " + chalk.blue(answers.num1) + " with " + chalk.blue(answers.num2) + " gives " + chalk.green.bold(result) + " .");
     }
-    else if (answers.operator == 'Remainder') {
-        result = Number(answers.num1) % Number(answers.num2);
+    else if (answers.operation == "Division") {
+        result = operations.divide(answers.num1, answers.num2);
+        console.log("You selected " + chalk.green.bold("division") + " operation. Dividing " + chalk.blue(answers.num1) + " by " + chalk.blue(answers.num2) + " gives " + chalk.green.bold(result) + " .");
     }
-    else if (answers.operator == 'Power') {
-        result = Number(answers.num1) ** Number(answers.num2);
+    else if (answers.operation == "Remainder") {
+        result = operations.remainder(answers.num1, answers.num2);
+        console.log("You selected " + chalk.green.bold("remainder") + " operation. Remainder after dividing " + chalk.blue(answers.num1) + " with " + chalk.blue(answers.num2) + " is " + chalk.green.bold(result) + " .");
     }
-    console.log(chalk.yellowBright('The result of performing ') +
-        chalk.red(`${answers.operator}`) +
-        chalk.yellowBright(' operation on ') +
-        chalk.red(`${answers.num1}`) +
-        chalk.yellowBright(' and ') +
-        chalk.red(`${answers.num2}`) +
-        chalk.yellowBright(' is ') +
-        chalk.red(`${result}`)) +
-        chalk.yellowBright('.\n');
-    contCalc();
-}
-async function contCalc() {
-    const answers = await inquirer.prompt({
-        name: 'continueCalc',
-        type: 'input',
-        message: 'Do you want to perform another operation (Y/N)?',
-    });
-    if (answers.continueCalc == 'Y' || answers.continueCalc == 'y') {
-        console.clear();
-        calc();
-    }
-    else {
-        console.log(chalk.green(`Thank you for using the calculator!\n`));
-        process.exit(0);
+    else if (answers.operation == "Exponentiation") {
+        result = operations.exponentiation(answers.num1, answers.num2);
+        console.log("You selected " + chalk.green.bold("exponentiation") + " operation. " + chalk.blue(answers.num1) + " to the power of " + chalk.blue(answers.num2) + " gives " + chalk.green.bold(result) + " .");
     }
 }
-// Run it with top-level await
-console.clear();
-await calc();
+calculatorMain();
