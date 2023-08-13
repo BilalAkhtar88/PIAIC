@@ -11,48 +11,60 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 import * as operations from "./operations.js";
 let result;
-const answers = await inquirer.prompt([
-    {
-        name: "num1",
-        type: "number",
-        message: "Enter the first operand: "
-    },
-    {
-        name: "num2",
-        type: "number",
-        message: "Enter the second operand: "
-    },
-    {
-        name: "operation",
-        type: "checkbox",
-        message: "Select the operator: ",
-        choices: ["Addition", "Subtraction", "Multiplication", "Division", "Remainder", "Exponentiation"]
-    }
-]);
+let continueCal = true;
 async function calculatorMain() {
-    if (answers.operation == "Addition") {
-        result = operations.default(answers.num1, answers.num2);
-        console.log("You selected " + chalk.green.bold("addition") + " operation. Adding " + chalk.blue.bold(answers.num1) + " to " + chalk.blue.bold(answers.num2) + " gives " + chalk.green.bold(result) + " .");
-    }
-    else if (answers.operation == "Subtraction") {
-        result = operations.subtract(answers.num1, answers.num2);
-        console.log("You selected " + chalk.green.bold("subtraction") + " operation. Subtracting " + chalk.blue(answers.num2) + " from " + chalk.blue(answers.num1) + " gives " + chalk.green.bold(result) + " .");
-    }
-    else if (answers.operation == "Multiplication") {
-        result = operations.multiply(answers.num1, answers.num2);
-        console.log("You selected " + chalk.green.bold("multiplication") + " operation. Multiplying " + chalk.blue(answers.num1) + " with " + chalk.blue(answers.num2) + " gives " + chalk.green.bold(result) + " .");
-    }
-    else if (answers.operation == "Division") {
-        result = operations.divide(answers.num1, answers.num2);
-        console.log("You selected " + chalk.green.bold("division") + " operation. Dividing " + chalk.blue(answers.num1) + " by " + chalk.blue(answers.num2) + " gives " + chalk.green.bold(result) + " .");
-    }
-    else if (answers.operation == "Remainder") {
-        result = operations.remainder(answers.num1, answers.num2);
-        console.log("You selected " + chalk.green.bold("remainder") + " operation. Remainder after dividing " + chalk.blue(answers.num1) + " with " + chalk.blue(answers.num2) + " is " + chalk.green.bold(result) + " .");
-    }
-    else if (answers.operation == "Exponentiation") {
-        result = operations.exponentiation(answers.num1, answers.num2);
-        console.log("You selected " + chalk.green.bold("exponentiation") + " operation. " + chalk.blue(answers.num1) + " to the power of " + chalk.blue(answers.num2) + " gives " + chalk.green.bold(result) + " .");
+    while (continueCal) {
+        const answers = await inquirer.prompt([
+            {
+                name: "num1",
+                type: "number",
+                message: "Enter the first operand: "
+            },
+            {
+                name: "num2",
+                type: "number",
+                message: "Enter the second operand: "
+            },
+            {
+                name: "operation",
+                type: "list",
+                message: "Select the operator: ",
+                choices: ["Addition", "Subtraction", "Multiplication", "Division", "Remainder", "Exponentiation"]
+            }
+        ]);
+        if (answers.operation == "Addition") {
+            result = operations.default(answers.num1, answers.num2);
+            console.log("You selected " + chalk.green.bold("addition") + " operation. Adding " + chalk.blue.bold(answers.num1) + " to " + chalk.blue.bold(answers.num2) + " gives " + chalk.green.bold(result) + " .");
+        }
+        else if (answers.operation == "Subtraction") {
+            result = operations.subtract(answers.num1, answers.num2);
+            console.log("You selected " + chalk.green.bold("subtraction") + " operation. Subtracting " + chalk.blue(answers.num2) + " from " + chalk.blue(answers.num1) + " gives " + chalk.green.bold(result) + " .");
+        }
+        else if (answers.operation == "Multiplication") {
+            result = operations.multiply(answers.num1, answers.num2);
+            console.log("You selected " + chalk.green.bold("multiplication") + " operation. Multiplying " + chalk.blue(answers.num1) + " with " + chalk.blue(answers.num2) + " gives " + chalk.green.bold(result) + " .");
+        }
+        else if (answers.operation == "Division") {
+            result = operations.divide(answers.num1, answers.num2);
+            console.log("You selected " + chalk.green.bold("division") + " operation. Dividing " + chalk.blue(answers.num1) + " by " + chalk.blue(answers.num2) + " gives " + chalk.green.bold(result) + " .");
+        }
+        else if (answers.operation == "Remainder") {
+            result = operations.remainder(answers.num1, answers.num2);
+            console.log("You selected " + chalk.green.bold("remainder") + " operation. Remainder after dividing " + chalk.blue(answers.num1) + " with " + chalk.blue(answers.num2) + " is " + chalk.green.bold(result) + " .");
+        }
+        else if (answers.operation == "Exponentiation") {
+            result = operations.exponentiation(answers.num1, answers.num2);
+            console.log("You selected " + chalk.green.bold("exponentiation") + " operation. " + chalk.blue(answers.num1) + " to the power of " + chalk.blue(answers.num2) + " gives " + chalk.green.bold(result) + " .");
+        }
+        let contCal = await inquirer.prompt([
+            {
+                name: "cont",
+                type: "confirm",
+                message: "Do you want to make another operation?"
+            }
+        ]);
+        continueCal = contCal.cont;
+        console.log("\n");
     }
 }
 calculatorMain();
