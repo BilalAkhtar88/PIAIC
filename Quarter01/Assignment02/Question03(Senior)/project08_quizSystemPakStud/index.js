@@ -15,7 +15,7 @@ let instructions = () => {
     console.log(chalk.bold("1. ") + ("You will have only one attempt to solve each question in this computer-based quiz."));
     console.log(chalk.bold("2. ") + ("There will be ") + chalk.bold.underline("no negative marking") + (" for an incorrect answer."));
     console.log(chalk.bold("3. ") + ("After attempting each question, the ") + chalk.green.bold("Correct ") + ("or ") + chalk.red.bold("Incorrect ") + ("status will be displayed immediately."));
-    console.log(chalk.bold("4. ") + ("Final result will be displayed after all questions. ") + chalk.bgWhiteBright.bold("Correct answers = 1 mark each.") + (" ") + chalk.bgWhiteBright.bold("Total marks = 5"));
+    console.log(chalk.bold("4. ") + ("Final result will be displayed after all questions. ") + chalk.inverse.bold("Correct answers = 1 mark each.") + (" ") + chalk.inverse.bold.black("Total marks = 5"));
     console.log(chalk.bold("5. ") + ("Stay focused and Good Luck!\n"));
 };
 async function startQuiz() {

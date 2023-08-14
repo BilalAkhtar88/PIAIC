@@ -1,6 +1,6 @@
 {
   "name": "proj_quiz_sys",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -19,7 +19,7 @@
     "inquirer": "^9.2.10",
     "node-banner": "^1.4.0"
   },
-  "bin":{
+  "bin": {
     "proj_quiz_sys": "./index.js"
   }
 }
