@@ -1,0 +1,23 @@
+Q 1- 10
+
+Q23 should be doable with the lesson we have studied till now.
+
+tsc --init
+npm init -y
+npm i @types/node -D
+npm i inquirer
+npm i @types/inquirer -D
+npm i chalk
+npm i prompt-sync
+npm i @types/prompt-sync -D
+code .
+
+Make index.ts file.
+Write following code:
+
+	const Prompt = require("prompt-sync")();
+	let num1 = Prompt("Enter the first number: ");
+
+
+Q25, 26, 27, 28 -> If-Else
+Q36, 37, 38, 39 -> Functions (default value of parameter)
