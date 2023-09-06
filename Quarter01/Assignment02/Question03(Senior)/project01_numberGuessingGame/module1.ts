@@ -17,7 +17,7 @@ export async function startGame(maxAttempts:number, a:number, b:number) {
     }
 
     let ranNum = genRanNum(a,b);
-    console.log(ranNum);
+    // console.log(ranNum);
 
     // for (let i = 0; i < 20; i++){
     //     ranNum = genRanNum(a , b);
@@ -68,7 +68,7 @@ export async function startGame(maxAttempts:number, a:number, b:number) {
             console.clear();
             attempts = 1;
             ranNum = genRanNum(a,b);
-            console.log(ranNum);
+            // console.log(ranNum);
             await makeGuess();
         } else {
             console.log(chalk.blue('\nThanks for playing! Goodbye.\n'));

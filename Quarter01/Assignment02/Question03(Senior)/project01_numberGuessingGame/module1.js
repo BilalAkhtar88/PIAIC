@@ -12,7 +12,7 @@ export async function startGame(maxAttempts, a, b) {
         return Math.floor(Math.random() * (b - a + 1) + a);
     }
     let ranNum = genRanNum(a, b);
-    console.log(ranNum);
+    // console.log(ranNum);
     // for (let i = 0; i < 20; i++){
     //     ranNum = genRanNum(a , b);
     //     console.log("Random Number at iteration number " + i + " = " + ranNum);
@@ -52,7 +52,7 @@ export async function startGame(maxAttempts, a, b) {
             console.clear();
             attempts = 1;
             ranNum = genRanNum(a, b);
-            console.log(ranNum);
+            // console.log(ranNum);
             await makeGuess();
         }
         else {
