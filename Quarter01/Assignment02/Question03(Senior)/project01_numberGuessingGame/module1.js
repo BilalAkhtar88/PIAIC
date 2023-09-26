@@ -12,7 +12,7 @@ export async function startGame(maxAttempts, a, b) {
         return Math.floor(Math.random() * (b - a + 1) + a);
     }
     let ranNum = genRanNum(a, b);
-    // console.log(ranNum);
+    console.log(ranNum);
     // for (let i = 0; i < 20; i++){
     //     ranNum = genRanNum(a , b);
     //     console.log("Random Number at iteration number " + i + " = " + ranNum);

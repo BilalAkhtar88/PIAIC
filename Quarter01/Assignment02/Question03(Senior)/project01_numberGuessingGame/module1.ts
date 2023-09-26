@@ -17,7 +17,7 @@ export async function startGame(maxAttempts:number, a:number, b:number) {
     }
 
     let ranNum = genRanNum(a,b);
-    // console.log(ranNum);
+    console.log(ranNum);
 
     // for (let i = 0; i < 20; i++){
     //     ranNum = genRanNum(a , b);
@@ -47,7 +47,9 @@ export async function startGame(maxAttempts:number, a:number, b:number) {
                 (attempts < maxAttempts) ? (console.log(chalk.red("\nTry again! ") + (`You have ${maxAttempts - attempts} attempts left to guess the secret number.\n`)))
                 :
                 (console.log(chalk.red("\nUnfortunately, you've exhausted all your attempts. ") + chalk.yellow.bold("Better luck next time!\n")));                
+                
                 (attempts == maxAttempts) ? (await playAgain()):undefined;
+                
                 attempts++ ;                 
                 await makeGuess();
             }

@@ -9,5 +9,5 @@ const max = 10;
 
 welcome(numOfTurns);
 
-startGame(numOfTurns,min,max);
-//await startGame(numOfTurns,min, max);
+//startGame(numOfTurns,min,max);
+await startGame(numOfTurns,min, max);
